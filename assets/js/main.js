@@ -1,55 +1,35 @@
-(function(){
-  let form = document.querySelector('.form'),
-      positionField = document.querySelector('.form__input');
-  
+(function() {
 
-  function validation(value){
-    return /[A-Z][1-8]/g.test(value);
+  /**
+   * Получаем из DOM форму,инпут с первым значения и вторым
+   */
+  let form = document.getElementById("calc"),
+      firstNumber = document.getElementById("first-value"),
+      secondNumber = document.getElementById("second-value");
+
+  // фукнция для валидации инпутов с числами 
+  function validationNumber(one, two) {
+    return /\d+(\.\d+)?/g.test(one) && /\d+(\.\d+)?/g.test(two);
   }
-  // функция для обработки результата 
-  function submitHandler(e){
+
+  // функция обработки для вывода результата сложения чисел
+  function submitHandler(e) {
     e.preventDefault();
-    let position = positionField.value;
-
-    if (!validation(position)){
-      alert("Введите валидное значение в поле");
-      return;
-    }
-    let possiblePositions = getPositionsOfHorse(position);
-    alert(`Возможные варианты хода - \n\n ${possiblePositions.join(' ')}`);
-  }
-
-  function getPositionsOfHorse(pos){
-    let hor = ['A','B','C','D','E','F','G','H'];
-    // всевозможные позиции коня относительно при добавлении к текущей позиции
-    let arrPossiblePosition = [
-      {x: 2, y: -1},
-      {x: 1, y: -2},
-      {x: -1,y: -2},
-      {x: -2, y: -1},
-      {x: -2, y: 1},
-      {x: -1, y: 2},
-      {x: 1,y: 2},
-      {x: 2, y: 1},
-    ];
-    let resultPos = [];
-    let [x,y] = pos.split('');
-
-    // приводим позиция из буквенного в числовую
-    x = hor.findIndex(ch => ch == x) + 1;
-    y = +y;
-
-    for (let i = 0; i < arrPossiblePosition.length; i ++){
-      let posiblePos = arrPossiblePosition[i];
-      let tx = x + posiblePos.x;
-      let ty = y + posiblePos.y;
-      if ((tx >= 1 && tx <= 8) && (ty >= 1 && ty <=8)){
-        let resPos = `${hor[tx - 1]}${ty}`;
-        resultPos.push(resPos);
+    // получаем из инпутов значения и приводим их к численном виду
+    let firstValue = +firstNumber.value;
+    let secondValue = +secondNumber.value;
+    
+    if (validationNumber(firstValue,secondValue) && firstValue && secondValue){
+      let result = firstValue + secondValue;
+      // если число неточное, то округляем его
+      if (!Number.isInteger(result)){
+        result = +result.toFixed(10);
       }
+      alert(`Результат \n\n ${result}`);
+    }else{
+      alert('Введите валидные значения в поля для чисел');
     }
-    return resultPos;
   }
 
-  form.addEventListener("submit",submitHandler);
+  form.addEventListener("submit", submitHandler);
 })();

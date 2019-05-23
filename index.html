@@ -1,6 +1,6 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,23 +8,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
-  <title>Second</title>
+  <title>Add two values</title>
 </head>
-
 <body>
   <div class="app">
-    <h1 class="app__title">Все возможные ходы коня</h1>
     <div class="container">
-      <form action="#" class="form">
-        <div class="form-control">
-          <label for="position-field" class="form__label">Исходное положение</label>
-          <input type="text" class="form__input" id="position-field">
+      <form action="#" class="calc" id="calc">
+        <div class="calc-control">
+          <label for="first-value" class="calc__label">Первое число</label>
+          <input type="text" class="calc__input" id="first-value" value="0.1">
         </div>
-        <button type="submit" class="form__btn">Ок</button>
+        <div class="calc-control">
+          <label for="second-value" class="calc__label">Второе число</label>
+          <input type="text" class="calc__input" id="second-value" value="0.2">
+        </div>
+        <button class="calc__btn" type="submit">Сложить</button>
       </form>
     </div>
   </div>
   <script src="./assets/js/main.js"></script>
 </body>
-
 </html>
